@@ -97,7 +97,9 @@ const Select = () => {
           </div>
         </div>
         <button
-          onClick={() => navigate()}
+          onClick={() =>
+            navigate("/board", { state: { theme, players, gridSize } })
+          }
           className="mt-8 w-big md:w-[541px] h-12 bg-orange rounded-xxl text-white font-bold text-lg"
         >
           Start Game

@@ -37,7 +37,7 @@ const Board = () => {
         </button>
       </div>
       <div
-        className={`parent mt-24 grid grid-cols-${gridSize}    ${
+        className={`mt-24 grid grid-cols-${gridSize}   ${
           gridSize === 4 ? "gap-3 md:gap-5" : "gap-[9px] md:gap-4"
         } w-[327px] md:w-[572px] mx-auto `}
       >
@@ -46,12 +46,11 @@ const Board = () => {
             <div
               key={div.id}
               className={`bg-buttonBG rounded-full flex justify-center items-center text-white font-bold ${
-                gridSize === 4
+                (gridSize === 4
                   ? "w-[72px] md:h-[118px]"
-                  : "w-[48px] md:h-[118px]"
-              } ${gridSize == 4 ? "text-[40px]" : "text-[24px]"} ${
-                gridSize === 4 ? "h-[72px] md:h-[118px]" : "h-[48px] md:h-20"
-              }`}
+                  : "w-[48px] md:h-[118px]",
+                gridSize === 4 ? "h-[72px] md:h-[118px]" : "h-[48px] md:h-20")
+              } ${gridSize == 4 ? "text-[40px]" : "text-[24px]"}`}
             >
               {div.number}
             </div>
