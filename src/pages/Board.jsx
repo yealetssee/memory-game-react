@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import useBoard from "../hooks/useBoard";
+import useClickHandler from "../hooks/useClickHandler";
 
 const Board = () => {
   const location = useLocation();
@@ -9,76 +11,8 @@ const Board = () => {
   const gridSize = location.state.gridSize;
   const gridSizeNumb = gridSize ** 2;
   const totalPairs = gridSizeNumb / 2;
-
-  const numbers = Array.from({ length: totalPairs }, (_, index) => index + 1);
-
-  const numberPairs = [...numbers, ...numbers];
-
-  const shuffledPairs = shuffleArray(numberPairs);
-
-  const [divs, setDivs] = useState(
-    shuffledPairs.map((number, index) => ({
-      id: index,
-      number: number,
-      flipped: false,
-      matched: false,
-    })),
-  );
-  const [canFlip, setCanFlip] = useState(true);
-
-  function shuffleArray(array) {
-    const newArray = [...array];
-    for (let i = newArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-    }
-    return newArray;
-  }
-  const handleClick = (id) => {
-    if (!canFlip) {
-      return;
-    }
-    const updatedDivs = divs.map((div) => {
-      if (div.id === id && !div.flipped && !div.matched) {
-        // If the clicked div is not flipped or matched, reveal the number
-        return { ...div, flipped: true };
-      }
-      return div;
-    });
-
-    const flippedDivs = updatedDivs.filter(
-      (div) => div.flipped && !div.matched,
-    );
-
-    if (flippedDivs.length === 2) {
-      // If two divs are flipped
-      const [div1, div2] = flippedDivs;
-
-      if (div1.number === div2.number) {
-        // If the numbers match, update the matched flag
-        updatedDivs.forEach((div) => {
-          if (div.flipped) {
-            div.matched = true;
-          }
-        });
-      } else {
-        // If the numbers don't match, flip back the divs after a short delay
-        setCanFlip(false);
-        setTimeout(() => {
-          const resetDivs = updatedDivs.map((div) => {
-            if (div.flipped && !div.matched) {
-              return { ...div, flipped: false };
-            }
-            return div;
-          });
-          setDivs(resetDivs);
-          setCanFlip(true);
-        }, 1000);
-      }
-    }
-
-    setDivs(updatedDivs);
-  };
+  const [div, setDivs] = useBoard(totalPairs);
+  const handleClick = useClickHandler(div, setDivs);
 
   return (
     <div className="p-6 bg-white">
@@ -94,7 +28,7 @@ const Board = () => {
           gridSize === 4 ? "gap-3 md:gap-5" : "gap-[9px] md:gap-4"
         } w-[327px] md:w-[572px] mx-auto `}
       >
-        {divs.map((div) => {
+        {div.map((div) => {
           return (
             <div
               key={div.id}
