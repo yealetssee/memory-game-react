@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Stopwatch = ({ isPaused }) => {
-  const [seconds, setSeconds] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-
+const Stopwatch = ({ isPaused, minutes, seconds, setMinutes, setSeconds }) => {
   useEffect(() => {
     let interval = null;
 
@@ -25,12 +22,14 @@ const Stopwatch = ({ isPaused }) => {
   }, [seconds]);
 
   return (
-    <div className="w-[151px] h-box bg-lightGray flex flex-col items-center  py-2  rounded-md mt-24">
-      <span className="text-Light text-base font-bold">Time</span>
-      <p className="text-buttonBG font-bold text-2xl">
-        {minutes.toString().padStart(2, "0")}:
-        {seconds.toString().padStart(2, "0")}
-      </p>
+    <div className="inline-block mr-6">
+      <div className="w-[151px] h-box bg-lightGray flex flex-col items-center  py-2  rounded-md">
+        <span className="text-Light text-base font-bold">Time</span>
+        <p className="text-buttonBG font-bold text-2xl">
+          {minutes.toString().padStart(2, "0")}:
+          {seconds.toString().padStart(2, "0")}
+        </p>
+      </div>
     </div>
   );
 };

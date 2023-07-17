@@ -1,5 +1,5 @@
 import { useState } from "react";
-const useClickHandler = (div, setDivs) => {
+const useClickHandler = (div, setDivs, setMoves) => {
   const [canFlip, setCanFlip] = useState(true);
   const handleClick = (id) => {
     if (!canFlip) {
@@ -8,6 +8,7 @@ const useClickHandler = (div, setDivs) => {
     const updatedDivs = div.map((div) => {
       if (div.id === id && !div.flipped && !div.matched) {
         // If the clicked div is not flipped or matched, reveal the number
+
         return { ...div, flipped: true };
       }
       return div;
@@ -20,6 +21,7 @@ const useClickHandler = (div, setDivs) => {
     if (flippedDivs.length === 2) {
       // If two divs are flipped
       const [div1, div2] = flippedDivs;
+      setMoves((totalmoves) => totalmoves + 1);
 
       if (div1.value === div2.value) {
         // If the numbers match, update the matched property

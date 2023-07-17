@@ -2,8 +2,10 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { useBoard, useClickHandler } from "../hooks";
 import { useMediaQuery } from "react-responsive";
 import ModalMenu from "../components/ModalMenu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Stopwatch from "../components/Stopwatch";
+import MovesCounter from "../components/MovesCounter";
+import WinModal from "../components/WinModal";
 
 const Board = () => {
   const location = useLocation();
@@ -14,14 +16,29 @@ const Board = () => {
   const gridSizeNumb = gridSize ** 2;
   const totalPairs = gridSizeNumb / 2;
   const [div, setDivs] = useBoard(totalPairs);
-  const handleClick = useClickHandler(div, setDivs);
+  const [moves, setMoves] = useState(0);
+  const handleClick = useClickHandler(div, setDivs, setMoves);
   const notMobile = useMediaQuery({ minWidth: 768 });
+  const [seconds, setSeconds] = useState(0);
+  const [minutes, setMinutes] = useState(0);
   const [openModal, setOpenModal] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [victory, setVictory] = useState(false);
 
   const clickHandler = () => {
     setOpenModal(true), setIsPaused(true);
   };
+
+  const check = div.every((div) => {
+    return div.matched;
+  });
+
+  useEffect(() => {
+    if (check) {
+      setVictory(true);
+      setIsPaused(true);
+    }
+  }, [check]);
 
   return (
     <div className="p-6 bg-white">
@@ -53,6 +70,9 @@ const Board = () => {
         {openModal && (
           <ModalMenu setOpenModal={setOpenModal} setIsPaused={setIsPaused} />
         )}
+        {victory && (
+          <WinModal minutes={minutes} seconds={seconds} moves={moves} />
+        )}
       </div>
 
       <div
@@ -73,7 +93,7 @@ const Board = () => {
                   : div.flipped
                   ? "bg-buttonLight"
                   : "bg-buttonBG"
-              } rounded-full flex justify-center items-center text-white font-bold ${
+              } rounded-full flex justify-center items-center text-white font-bold  transition-all ${
                 gridSize === 4
                   ? "w-[72px] md:w-[118px]"
                   : "w-[48px] md:w-[82px]"
@@ -87,7 +107,16 @@ const Board = () => {
           );
         })}
       </div>
-      <Stopwatch isPaused={isPaused} />
+      <div className=" mx-auto mt-24 flex justify-between">
+        <Stopwatch
+          isPaused={isPaused}
+          minutes={minutes}
+          seconds={seconds}
+          setMinutes={setMinutes}
+          setSeconds={setSeconds}
+        />
+        <MovesCounter moves={moves} />
+      </div>
     </div>
   );
 };

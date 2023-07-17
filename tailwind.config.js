@@ -35,6 +35,7 @@ export default {
         xxl: "26px",
       },
       fontSize: {
+        thirteen: "13px",
         base: "15px",
         medium: "26px",
         forty: "40px",
