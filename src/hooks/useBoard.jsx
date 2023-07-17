@@ -7,7 +7,7 @@ const useBoard = (totalPairs) => {
   const [div, setDivs] = useState(
     shuffledPairs.map((number, index) => ({
       id: index,
-      number: number,
+      value: number,
       flipped: false,
       matched: false,
     })),

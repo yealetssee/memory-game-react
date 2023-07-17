@@ -21,8 +21,8 @@ const useClickHandler = (div, setDivs) => {
       // If two divs are flipped
       const [div1, div2] = flippedDivs;
 
-      if (div1.number === div2.number) {
-        // If the numbers match, update the matched flag
+      if (div1.value === div2.value) {
+        // If the numbers match, update the matched property
         updatedDivs.forEach((div) => {
           if (div.flipped) {
             div.matched = true;

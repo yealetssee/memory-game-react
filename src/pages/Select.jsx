@@ -5,6 +5,7 @@ const Select = () => {
   const [theme, setTheme] = useState("Numbers");
   const [players, setPlayers] = useState(1);
   const [gridSize, setGridSize] = useState(4);
+
   const navigate = useNavigate();
 
   return (
@@ -98,7 +99,9 @@ const Select = () => {
         </div>
         <button
           onClick={() =>
-            navigate("/board", { state: { theme, players, gridSize } })
+            navigate(`/board/${gridSize}`, {
+              state: { theme, players, gridSize },
+            })
           }
           className="mt-8 w-big md:w-[541px] h-12 bg-orange rounded-xxl text-white font-bold text-lg"
         >

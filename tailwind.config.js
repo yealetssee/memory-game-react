@@ -6,10 +6,13 @@ export default {
       colors: {
         selectBg: "#152938",
         white: "#FCFCFC",
-        buttonBG: "#304859;",
+        buttonBG: "#304859",
         buttonLight: "#BCCED9",
         Light: "#7191A5",
         orange: " #FDA214",
+        lightGray: "#DFE7EC",
+        modalwhite: "#F2F2F2",
+        modalWrapper: "rgba(0, 0, 0, 0.6)",
       },
       fontFamily: {
         sans: ["Atkinson Hyperlegible", "sans-serif"],
@@ -18,8 +21,14 @@ export default {
       width: {
         31: "134px",
         15: "62px",
+        notMobile: "127px",
         big: "279px",
         lgNumb: "119px",
+        container: "327px",
+      },
+      height: {
+        13: "52px",
+        box: "70px",
       },
 
       borderRadius: {
@@ -28,6 +37,7 @@ export default {
       fontSize: {
         base: "15px",
         medium: "26px",
+        forty: "40px",
       },
     },
   },
