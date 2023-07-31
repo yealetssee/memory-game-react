@@ -2,34 +2,34 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Select = () => {
-  const [theme, setTheme] = useState("Numbers");
+  const [theme, setTheme] = useState("numbers");
   const [players, setPlayers] = useState(1);
   const [gridSize, setGridSize] = useState(4);
 
   const navigate = useNavigate();
 
   return (
-    <div className="h-auto w-screen bg-selectBg  flex  flex-col items-center  box-border pb-28 ">
+    <div className="w-full  h-full bg-selectBg  flex  flex-col items-center  box-border  ">
       <div className="logo text-[32px] font-bold text-white  mt-20  ">
-        <h1>memory</h1>
+        <h1>memory </h1>
       </div>
-      <section className="bg-white w-[327px] mx-auto md:w-[654px]  h-auto rounded-[10px] mt-11 flex flex-col p-6 md:py-14 md:items-center  ">
+      <section className="bg-white w-[327px] mx-auto md:w-[654px]  h-auto rounded-[10px] mt-11 flex flex-col p-6 md:py-14 md:items-center ">
         <div className="w-full  md:px-7 ">
           <p className=" text-base md:text-xl font-bold text-Light">
             Select Theme
           </p>
           <button
-            onClick={() => setTheme("Numbers")}
+            onClick={() => setTheme("numbers")}
             className={`w-31 md:w-64 h-10 ${
-              theme === "Numbers" ? "bg-buttonBG" : "bg-buttonLight"
+              theme === "numbers" ? "bg-buttonBG" : "bg-buttonLight"
             }  rounded-xxl text-white text-base md:text-2xl font-bold mr-2 md:mr-8 mt-2`}
           >
             Numbers
           </button>
           <button
-            onClick={() => setTheme("Icons")}
+            onClick={() => setTheme("icons")}
             className={`w-31 md:w-64 h-10 ${
-              theme === "Icons" ? "bg-buttonBG" : "bg-buttonLight"
+              theme === "icons" ? "bg-buttonBG" : "bg-buttonLight"
             }  rounded-xxl text-white text-base md:text-2xl font-bold mt-2`}
           >
             Icons

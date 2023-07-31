@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function App() {
   return (
-    <div className="bg-slate-500  h-full w-screen">
+    <div className="bg-slate-500  h-full w-screen ">
       <Routes>
         <Route path="/" element={<Select />} />
         <Route path={`/board/:id`} element={<Board />} />

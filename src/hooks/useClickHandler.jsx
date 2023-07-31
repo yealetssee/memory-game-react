@@ -1,6 +1,7 @@
 import { useState } from "react";
 const useClickHandler = (div, setDivs, setMoves) => {
   const [canFlip, setCanFlip] = useState(true);
+
   const handleClick = (id) => {
     if (!canFlip) {
       return;
@@ -24,12 +25,15 @@ const useClickHandler = (div, setDivs, setMoves) => {
       setMoves((totalmoves) => totalmoves + 1);
 
       if (div1.value === div2.value) {
-        // If the numbers match, update the matched property
-        updatedDivs.forEach((div) => {
-          if (div.flipped) {
-            div.matched = true;
-          }
-        });
+        div1.matched = true;
+        div2.matched = true;
+        div1.justMatched = true;
+        div2.justMatched = true;
+
+        setTimeout(() => {
+          div1.justMatched = false;
+          div2.justMatched = false;
+        }, 1000);
       } else {
         // If the numbers don't match, flip back the divs after a short delay
         setCanFlip(false);

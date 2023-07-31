@@ -15,7 +15,7 @@ const Board = () => {
   const gridSize = location.state.gridSize;
   const gridSizeNumb = gridSize ** 2;
   const totalPairs = gridSizeNumb / 2;
-  const [div, setDivs] = useBoard(totalPairs);
+  const [div, setDivs] = useBoard(totalPairs, theme);
   const [moves, setMoves] = useState(0);
   const handleClick = useClickHandler(div, setDivs, setMoves);
   const notMobile = useMediaQuery({ minWidth: 768 });
@@ -29,20 +29,20 @@ const Board = () => {
     setOpenModal(true), setIsPaused(true);
   };
 
-  const check = div.every((div) => {
+  const checkWin = div.every((div) => {
     return div.matched;
   });
 
   useEffect(() => {
-    if (check) {
+    if (checkWin) {
       setVictory(true);
       setIsPaused(true);
     }
-  }, [check]);
+  }, [checkWin]);
 
   return (
-    <div className="p-6 bg-white">
-      <div className="flex justify-between ">
+    <div className="p-6 bg-white w-full ">
+      <div className="flex justify-between  p-6 w-full ">
         <h1 className="text-selectBg text-2xl md:text-forty font-bold">
           memory
         </h1>
@@ -88,7 +88,7 @@ const Board = () => {
             <div
               key={div.id}
               className={`${
-                div.matched
+                div.justMatched
                   ? "bg-orange"
                   : div.flipped
                   ? "bg-buttonLight"
@@ -102,7 +102,7 @@ const Board = () => {
               } ${gridSize == 4 ? "text-[40px]" : "text-[24px]"}`}
               onClick={() => handleClick(div.id)}
             >
-              {div.flipped ? div.value : ""}
+              {div.flipped ? theme === "icons" ? <div.value /> : div.value : ""}
             </div>
           );
         })}

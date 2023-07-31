@@ -1,15 +1,30 @@
 import { useState } from "react";
-const useBoard = (totalPairs) => {
-  const numbers = Array.from({ length: totalPairs }, (_, index) => index + 1);
+import { Anchor, Ball,Car,Flask,Hand,Lra,Moon,Snowflake,Sun } from "../iconss/";
 
-  const numberPairs = [...numbers, ...numbers];
-  const shuffledPairs = shuffleArray(numberPairs);
+const useBoard = (totalPairs, theme) => {
+  const getValuesByTheme = (totalPairs, theme) => {
+    if (theme === "numbers") {
+      return Array.from({ length: totalPairs }, (_, index) => index + 1);
+    } else if (theme === "icons") {
+      const iconArray = [Anchor, Ball,Car,
+      Flask,Hand,Lra,Moon,Snowflake,Sun];
+      return Array.from(
+        { length: totalPairs },
+        (_, index) => iconArray[index % iconArray.length],
+      );
+    } 
+  };
+  const arr = getValuesByTheme(totalPairs, theme);
+  const Pairs = [...arr, ...arr];
+  const shuffledPairs = shuffleArray(Pairs);
+
   const [div, setDivs] = useState(
-    shuffledPairs.map((number, index) => ({
+    shuffledPairs.map((value, index) => ({
       id: index,
-      value: number,
+      value: value,
       flipped: false,
       matched: false,
+      justMatched: false,
     })),
   );
   function shuffleArray(array) {
