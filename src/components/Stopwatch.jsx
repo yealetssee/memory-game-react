@@ -23,7 +23,7 @@ const Stopwatch = ({ isPaused, minutes, seconds, setMinutes, setSeconds }) => {
 
   return (
     <div className="inline-block mr-6">
-      <div className="w-[151px] h-box bg-lightGray flex flex-col items-center  py-2  rounded-md">
+      <div className="w-[151px] h-box bg-lightGray flex flex-col items-center  py-2  rounded-md md:w-64">
         <span className="text-Light text-base font-bold">Time</span>
         <p className="text-buttonBG font-bold text-2xl">
           {minutes.toString().padStart(2, "0")}:

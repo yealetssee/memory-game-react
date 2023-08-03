@@ -9,11 +9,11 @@ const Select = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full  h-full bg-selectBg  flex  flex-col items-center  box-border  ">
+    <div className="w-full  h-screen  bg-selectBg  flex  flex-col items-center box-border">
       <div className="logo text-[32px] font-bold text-white  mt-20  ">
         <h1>memory </h1>
       </div>
-      <section className="bg-white w-[327px] mx-auto md:w-[654px]  h-auto rounded-[10px] mt-11 flex flex-col p-6 md:py-14 md:items-center ">
+      <section className="bg-white w-[327px] mx-auto md:w-[654px]  h-auto rounded-[10px] mt-11 flex flex-col p-6 md:py-14 md:items-center">
         <div className="w-full  md:px-7 ">
           <p className=" text-base md:text-xl font-bold text-Light">
             Select Theme
@@ -103,7 +103,7 @@ const Select = () => {
               state: { theme, players, gridSize },
             })
           }
-          className="mt-8 w-big md:w-[541px] h-12 bg-orange rounded-xxl text-white font-bold text-lg"
+          className="mt-8 w-big md:w-[541px] h-12 bg-orange rounded-xxl text-white font-bold text-lg "
         >
           Start Game
         </button>

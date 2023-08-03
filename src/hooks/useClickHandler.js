@@ -1,5 +1,11 @@
 import { useState } from "react";
-const useClickHandler = (div, setDivs, setMoves) => {
+const useClickHandler = (
+  div,
+  setDivs,
+  setMoves,
+  activePlayerIndex,
+  dispatch,
+) => {
   const [canFlip, setCanFlip] = useState(true);
 
   const handleClick = (id) => {
@@ -29,6 +35,10 @@ const useClickHandler = (div, setDivs, setMoves) => {
         div2.matched = true;
         div1.justMatched = true;
         div2.justMatched = true;
+        dispatch({
+          type: "Increment_Score",
+          playerIndex: activePlayerIndex,
+        });
 
         setTimeout(() => {
           div1.justMatched = false;
@@ -45,6 +55,7 @@ const useClickHandler = (div, setDivs, setMoves) => {
             return div;
           });
           setDivs(resetDivs);
+          dispatch({ type: "Switch_Player" });
           setCanFlip(true);
         }, 1000);
       }
