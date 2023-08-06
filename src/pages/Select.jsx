@@ -99,7 +99,7 @@ const Select = () => {
         </div>
         <button
           onClick={() =>
-            navigate(`/board/${gridSize}`, {
+            navigate(`/board`, {
               state: { theme, players, gridSize },
             })
           }

@@ -28,35 +28,40 @@ const useBoard = (totalPairs, theme) => {
     } else if (theme === "icons") {
       const iconArray = [
         Anchor,
-        Ball,
-        Car,
-        Flask,
-        Hand,
-        Lra,
-        Moon,
-        Snowflake,
-        Sun,
-        Apple,
-        Lemon,
-        Lightbulb,
-        Linux,
-        Paperplane,
-        Plane,
-        React,
-        Star,
-        Camera,
-        Bomb,
+        <Ball />,
+        <Car />,
+        <Flask />,
+        <Hand />,
+        <Lra />,
+        <Moon />,
+        <Snowflake />,
+        <Sun />,
+        <Apple />,
+        <Lemon />,
+        <Lightbulb />,
+        <Linux />,
+        <Paperplane />,
+        <Plane />,
+        <React />,
+        <Star />,
+        <Camera />,
+        <Bomb />,
       ];
-      return Array.from(
+      const newArr = Array.from(
         { length: totalPairs },
-        (_, index) => iconArray[(index % iconArray.length) + 1],
+        (_, index) => iconArray[index % iconArray.length],
       );
+
+      return newArr;
     }
   };
 
   const arr = getValuesByTheme(totalPairs, theme);
+  // console.log(arr);
   const Pairs = [...arr, ...arr];
   const shuffledPairs = shuffleArray(Pairs);
+
+  // console.log(shuffledPairs);
 
   const [div, setDivs] = useState(
     shuffledPairs.map((value, index) => ({
@@ -67,9 +72,10 @@ const useBoard = (totalPairs, theme) => {
       justMatched: false,
     })),
   );
+  console.log(div);
   function shuffleArray(array) {
     const newArray = [...array];
-    for (let i = newArray.length - 1; i > 0; i--) {
+    for (let i = newArray.length - 1; i >= 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
     }

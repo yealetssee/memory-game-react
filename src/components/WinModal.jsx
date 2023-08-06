@@ -8,10 +8,7 @@ const WinModal = ({ minutes, seconds, moves, players, playersList }) => {
   const winners = playersList.filter((player) => {
     return player.score === highestScore;
   });
-  console.log(highestScore);
-  console.log(winners);
 
-  console.log(playersList);
   return players === 1 ? (
     <div className="fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-modalWrapper">
       <div className="w-container h-[376px] bg-modalwhite rounded-xl px-6 pb-4 pt-8 flex items-center flex-col md:w-[654px] md:h-[510px] md:pt-12 ">

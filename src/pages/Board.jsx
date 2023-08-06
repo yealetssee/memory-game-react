@@ -126,7 +126,7 @@ const Board = () => {
               } ${gridSize == 4 ? "text-[40px]" : "text-[24px]"}`}
               onClick={() => handleClick(div.id)}
             >
-              {div.flipped ? theme === "icons" ? <div.value /> : div.value : ""}
+              {div.flipped ? (theme === "icons" ? div.value : div.value) : ""}
             </div>
           );
         })}

@@ -8,7 +8,7 @@ function App() {
     <div className="bg-slate-500  h-full w-screen ">
       <Routes>
         <Route path="/" element={<Select />} />
-        <Route path={`/board/:id`} element={<Board />} />
+        <Route path={`/board`} element={<Board />} />
       </Routes>
     </div>
   );
